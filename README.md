@@ -2,10 +2,17 @@
 
 - Prérequis :
 	- Java
+	- JavaCC : javacc-5.0.zip
 	- IDE : Netbeans
-	- plugin JavaCC
+	- plugin JavaCC pour Netbeans : 1275348047830_org-javaccnb.nbm
 
-- Commandes : 
+- Commandes :
+	- Dézipper javacc-5.0.zip
+	- Ajouter javacc-5.0/bin au $PATH
+	- Ajouter plugin JavaCC pour Netbeans :
+	
+	Netbeans : "outils" > "plugin" > "Téléchargés" > "Ajouter plugin"
+ 
 	- Compiler avec JavaCC :
 	> javacc ExprVerif.jj
 
@@ -14,4 +21,5 @@
 
 	- Exécuter et tester des expressions :
 	> java ExprVerif
+
 	entrer une expression: 1+2*3
