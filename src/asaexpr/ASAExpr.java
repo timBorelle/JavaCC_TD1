@@ -30,7 +30,7 @@ public abstract class ASAExpr {
     }
     
     /**
-     * Methode devant être definie dans chaque classe fille
+     * Methode devant ï¿½tre definie dans chaque classe fille
      * doit retourner la chaine pour la notation explorateur.
      * @return la chaine representant le noeud
      */
@@ -44,6 +44,8 @@ public abstract class ASAExpr {
     public String notationExplorateur() {
         return notationExplorateur("");
     }
+    
+    public abstract int evalue();
     
     private String notationExplorateur(String prefixe) {
         String res = prefixe + getLabelExplorateur() + "\n";
