@@ -16,4 +16,9 @@ public class ASAExprEntier extends ASAExpr {
     public int evalue() {
         return valeur;
     }
+
+    @Override
+    public String getLabelPostfix() {
+        return ""+valeur;
+    }
 }

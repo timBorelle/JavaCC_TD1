@@ -60,4 +60,19 @@ public abstract class ASAExpr {
         }
         return res;
     }
+    
+    public abstract String getLabelPostfix();
+    
+    public String notationPostfix(){
+        String res = "";
+        ASAExpr e1 = getExpr1();
+        ASAExpr e2 = getExpr2();
+        if (e1 != null) {
+            res += e1.notationPostfix();
+        }
+        if (e2 != null) {
+            res += " "+e2.notationPostfix();
+        }
+        return res + " " + getLabelPostfix();
+    }
 }

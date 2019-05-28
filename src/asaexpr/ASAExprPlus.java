@@ -28,4 +28,9 @@ public class ASAExprPlus extends ASAExpr {
     public int evalue() {
         return e1.evalue()+e2.evalue();
     }
+
+    @Override
+    public String getLabelPostfix() {
+       return "+";
+    }
 }

@@ -23,7 +23,7 @@ PARSER_BEGIN(ExprArbre)
 
             System.out.println("entrer une expression: ");
             ASAExpr a = syn.parse();
-            System.out.println(a.evalue());        //a.notationExplorateur()
+            System.out.println(a.notationPostfix());             //a.evalue()        //a.notationExplorateur()
         }
     }
 
