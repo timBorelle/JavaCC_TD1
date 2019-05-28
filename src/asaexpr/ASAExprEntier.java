@@ -11,4 +11,9 @@ public class ASAExprEntier extends ASAExpr {
     public String getLabelExplorateur() {
         return "ENTIER = " + valeur;
     }
+    
+    @Override
+    public int evalue() {
+        return valeur;
+    }
 }

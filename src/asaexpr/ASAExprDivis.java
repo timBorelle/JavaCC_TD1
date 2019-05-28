@@ -23,4 +23,9 @@ public class ASAExprDivis extends ASAExpr {
     public String getLabelExplorateur() {
         return "DIVIS";
     }
+
+    @Override
+    public int evalue() {
+        return e1.evalue()/e2.evalue();
+    }
 }

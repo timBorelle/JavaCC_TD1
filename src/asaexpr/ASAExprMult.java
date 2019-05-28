@@ -19,7 +19,13 @@ public class ASAExprMult extends ASAExpr {
     public ASAExpr getExpr2() {
         return e2;
     }
+    @Override
     public String getLabelExplorateur() {
         return "MULT";
+    }
+    
+    @Override
+    public int evalue() {
+        return e1.evalue()*e2.evalue();
     }
 }

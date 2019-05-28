@@ -20,7 +20,13 @@ public class ASAExprMoins extends ASAExpr {
         return e2;
     }
     
+    @Override
     public String getLabelExplorateur() {
         return "MOINS";
+    }
+    
+    @Override
+    public int evalue() {
+        return e1.evalue()-e2.evalue();
     }
 }

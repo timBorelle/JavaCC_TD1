@@ -23,4 +23,9 @@ public class ASAExprPlus extends ASAExpr {
     public String getLabelExplorateur() {
         return "PLUS";
     }
+    
+    @Override
+    public int evalue() {
+        return e1.evalue()+e2.evalue();
+    }
 }
