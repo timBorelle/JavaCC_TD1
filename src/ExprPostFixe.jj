@@ -1,0 +1,107 @@
+/*
+ * ExprPostFixe.jj
+ *
+ * Timothée BORELLE - 2019
+ *
+ * Evaluateur d'expressions arithmetiques post fixées en JavaCC.
+ *
+ */
+
+PARSER_BEGIN(ExprPostFixe)
+
+    public class ExprPostFixe {
+	public static void main(String args[]) throws ParseException {
+            ExprPostFixe syn = new ExprPostFixe(System.in);
+
+            System.out.print("entrer une expression post fixée: ");
+            String res = syn.evalue();
+            System.out.println("resultat = " + res);
+        }
+    }
+
+PARSER_END(ExprPostFixe)
+
+
+/* Partie syntaxique
+ *
+ * On ajoute une regle qui tient lieu d'axiome
+ * pour s'assurer qu'il y a bien un \n a la fin de l'expression.
+ *
+ * Chaque regle retourne l'entier resultant de la sous-expression
+ * qu'elle vient d'analyser.
+ */
+
+    // regle additionnelle: evalue -> expression \n
+    // pour s'assurer qu'il y a bien un \n a la fin de l'expression
+String evalue() :  
+                                            { String x; }
+{
+    x = expression() "\n"                   { return x; }
+}
+
+
+    // expression -> terme { + terme | - terme }
+String expression() : 
+                                            { String x, y; }
+{
+    x = terme()
+    (   "+"  y = terme()                    { x = x + " " + y + " +"; }
+    |   "-"  y = terme()                    { x = x + " " + y + " -"; }
+    )*
+                                            { return x; }
+}
+
+
+    // terme -> facteur { * facteur | / facteur | % facteur}
+String terme() :
+                                            { String x, y; }
+{
+    x = facteur()
+    (   "*"  y = facteur()                  { x = x + " " + y + " *"; }
+    |	"/"  y = facteur()                  { x = x + " " + y + " /"; }
+    |	"%"  y = facteur()                  { x = x + " " + y + " %"; }
+    )*
+                                            { return x; }
+}
+
+
+    // - unaire
+    // facteur -> - facteur | primaire
+/*String facteur() :
+                                            { String x; }
+{
+
+    ( 	"-" x = facteur()                      { x = x + " -u"; }
+    |   x = primaire()                        
+    )
+                                            { return x; }
+}*/
+
+    // terme -> ( expression ) | entier
+String facteur() :
+                                            { String x; Token t; }
+{
+
+    ( 	"("  x = expression()  ")"
+    |   t = <ENTIER>                        { x = t.image; }
+    )
+                                            { return x; }
+}
+
+
+/* Partie lexicale
+ * 
+ * Les unites constantes sont directement referencees dans les regles.
+ * On ne decrit donc que les separateurs et les unites non constantes.
+ */
+
+SKIP : 
+{ " " | "\t" | "\r" }
+
+
+TOKEN :
+{ 
+    < ENTIER: ( ["0"-"9"] )+ > 
+//    < STRING_LITERAL: ( ["a"-"z"] )+ >
+}
+

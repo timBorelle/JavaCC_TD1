@@ -23,3 +23,17 @@
 	> java ExprVerif
 
 	entrer une expression: 1+2*3
+
+	- Compiler ExprPostFixe avec JavaCC :
+	> javacc ExprPostFixe.jj
+
+	- Compiler ExprPostFixe.java :
+	> javac ExprPostFixe.java
+
+	- Exécuter et tester des expressions :
+	> java ExprPostFixe
+
+	1+2*5
+
+	resultat = 1 2 5 * +
+
